@@ -25,7 +25,7 @@ Install lines pin the release payload commit. It holds every file the plugin loa
 Hermes Agent:
 
 ```bash
-hermes plugins install KellerAI/disk-space-auditor --ref <release-sha> --no-enable
+hermes plugins install KellerAI/disk-space-auditor --ref 85ebaf0054bf3416a774c2d598d46a00d3101e21 --no-enable
 hermes plugins enable disk-space-auditor
 ```
 
@@ -34,7 +34,7 @@ Portable packages stay disabled until you enable them, and enabling takes effect
 OpenAI Codex:
 
 ```bash
-codex plugin marketplace add KellerAI/disk-space-auditor --ref <release-sha>
+codex plugin marketplace add KellerAI/disk-space-auditor --ref 85ebaf0054bf3416a774c2d598d46a00d3101e21
 codex plugin add disk-space-auditor@kellerai-disk-space-auditor
 ```
 
