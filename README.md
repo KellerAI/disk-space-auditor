@@ -20,6 +20,8 @@ Audits disk usage on the computer your agent runs on, finds the biggest folders 
 
 ## Install
 
+Install lines pin the release payload commit. It holds every file the plugin loads; the `v0.1.0` tag adds only this pin to the README and the changelog.
+
 Hermes Agent:
 
 ```bash
@@ -27,9 +29,18 @@ hermes plugins install KellerAI/disk-space-auditor --ref <release-sha> --no-enab
 hermes plugins enable disk-space-auditor
 ```
 
-Portable packages stay disabled until you enable them. Once enabled, the skills appear as `disk-space-auditor:get-started` and `disk-space-auditor:run-audit`.
+Portable packages stay disabled until you enable them, and enabling takes effect on your next session. Hermes namespaces portable skills by plugin. On Hermes 0.22 they load as `agent-plugin-disk-space-auditor-6da82390:get-started`, `agent-plugin-disk-space-auditor-6da82390:run-audit`.
 
-OpenAI Codex or the ChatGPT desktop app: this repository ships a marketplace file at `.agents/plugins/marketplace.json`. Add the repository as a plugin marketplace and install `disk-space-auditor`.
+OpenAI Codex:
+
+```bash
+codex plugin marketplace add KellerAI/disk-space-auditor --ref <release-sha>
+codex plugin add disk-space-auditor@kellerai-disk-space-auditor
+```
+
+`codex plugin add` enables the plugin when it installs it. `codex plugin remove disk-space-auditor@kellerai-disk-space-auditor` uninstalls it and keeps the marketplace. Skills load in Codex as `disk-space-auditor:get-started`, `disk-space-auditor:run-audit`. The ChatGPT desktop app reads the same `.agents/plugins/marketplace.json` format according to OpenAI's plugin documentation; it has not been tested separately here.
+
+Tested on 2026-11-26 with Hermes Agent 0.22.0 and Codex 0.166.0: pinned install, `hermes plugins validate` and `doctor`, and the Codex marketplace listing. Skill loading and enable/disable were verified on the sibling plugin `weekly-bot-upgrade-reviewer`, which has the same package layout; they were not repeated here.
 
 ## Skills
 
